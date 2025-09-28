@@ -1,1 +1,3 @@
-# Lab2_Ashesi_Health_Kiosk_66942028
+Name: Akosua Twumwaa Boateng - Mensah
+Student ID: 66942028
+Lab 2
