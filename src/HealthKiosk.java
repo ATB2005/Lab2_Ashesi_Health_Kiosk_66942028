@@ -61,5 +61,28 @@ public class HealthKiosk {
                     break;
             }
         }
+        char randomChar = (char)('A'+(int)(Math.random()*26));
+        int randomNum1 = ( 3 + (int)(Math.random()*7));
+        int randomNum2 = ( 3 + (int)(Math.random()*7));
+        int randomNum3 = ( 3 + (int)(Math.random()*7));
+        int randomNum4 = ( 3 + (int)(Math.random()*7));
+        String ID = (""+ randomChar+randomNum1+randomNum2+randomNum3+randomNum4);
+        System.out.println("This is your new ID: " +ID);
+        System.out.print("Enter your new ID: ");
+        String shortID = input.nextLine();
+        if (shortID.length()==5 && Character.isAlphabetic(shortID.charAt(0))&&(ID.charAt(0))==(shortID.charAt(0))){
+            if (Character.isDigit(shortID.charAt(1))&&Character.isDigit(shortID.charAt(2))&&Character.isDigit(shortID.charAt(3))&&Character.isDigit(shortID.charAt(4))) {
+                if((ID.charAt(1))==(shortID.charAt(1))&&(ID.charAt(2))==(shortID.charAt(2))&&(ID.charAt(3))==(shortID.charAt(3))&&(ID.charAt(4))==(shortID.charAt(4))){
+                    System.out.println("Valid ID");
+                }
+            }
+        }
+        else if (shortID.length()!=5) {
+            System.out.println("Invalid ID length");
+        }
+        else{
+            System.out.println("Invalid: Last characters");
+        }
+
     }
 }
