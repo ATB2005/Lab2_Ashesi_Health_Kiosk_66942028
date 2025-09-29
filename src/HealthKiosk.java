@@ -23,17 +23,21 @@ public class HealthKiosk {
             default:
                 System.out.println("Invalid service code");
         }
+        byte healthMetric = 0;
+       double BMI = 0.0;
+        int numOfTablets = 0;
+        double sinOfAngle = 0.0;
         if (serviceCode == 'T') {
             System.out.println("1 - BMI \n 2 - Dosage round - up \n 3 - Simple Trig Helper");
             System.out.print("Enter the health metric (1 to 3):");
-            byte healthMetric = input.nextByte();
+            healthMetric = input.nextByte();
             switch (healthMetric) {
                 case 1:
                     System.out.print("Enter your weight(Kg): ");
                     double weight = input.nextDouble();
                     System.out.print("Enter your height(m): ");
                     double height = input.nextDouble();
-                    double BMI = weight / Math.pow(height, 2.0);
+                     BMI = weight / Math.pow(height, 2.0);
                     System.out.println("BMI:" + Math.round(BMI * 10) / 10.0);
                     if (weight >= 30) {
                         System.out.println("Category: Obese");
@@ -49,13 +53,13 @@ public class HealthKiosk {
                     System.out.print("Enter the required dosage(mg): ");
                     double dosage = input.nextDouble();
                     final int TABLETS = 250;
-                    int numOfTablets = (int) Math.ceil(dosage) / TABLETS;
+                     numOfTablets = (int) Math.ceil(dosage) / TABLETS;
                     System.out.println("Number of tablets dispensed: " + numOfTablets);
                     break;
                 case 3:
                     System.out.print("Enter an angle in degrees: ");
                     double angle = input.nextDouble();
-                    double sinOfAngle = Math.sin(angle);
+                     sinOfAngle = Math.sin(angle);
                     double cosOfAngle = Math.cos(angle);
                     System.out.println("The sin of the angle is " + (Math.round(sinOfAngle * 1000) / 1000.0) + " and the cos of the angle is " + (Math.round(cosOfAngle * 1000) / 1000.0));
                     break;
@@ -69,7 +73,7 @@ public class HealthKiosk {
         String ID = (""+ randomChar+randomNum1+randomNum2+randomNum3+randomNum4);
         System.out.println("This is your new ID: " +ID);
         System.out.print("Enter your new ID: ");
-        String shortID = input.nextLine();
+        String shortID = input.next();
         if (shortID.length()==5 && Character.isAlphabetic(shortID.charAt(0))&&(ID.charAt(0))==(shortID.charAt(0))){
             if (Character.isDigit(shortID.charAt(1))&&Character.isDigit(shortID.charAt(2))&&Character.isDigit(shortID.charAt(3))&&Character.isDigit(shortID.charAt(4))) {
                 if((ID.charAt(1))==(shortID.charAt(1))&&(ID.charAt(2))==(shortID.charAt(2))&&(ID.charAt(3))==(shortID.charAt(3))&&(ID.charAt(4))==(shortID.charAt(4))){
@@ -83,6 +87,22 @@ public class HealthKiosk {
         else{
             System.out.println("Invalid: Last characters");
         }
-
+        System.out.print("Enter your first name: ");
+        String firstName = input.next();
+        char baseCode = (firstName.toUpperCase().charAt(0));
+        System.out.println("Base code = " + baseCode);
+        char shiftedLetter = (char) ('A'+(baseCode - 'A' + 2)%26);
+        System.out.println("Shifted letter of base code = " + shiftedLetter);
+        String lastTwoChars = ID.substring(3,5);
+        System.out.println("Last two characters for ID: " + lastTwoChars);
+        if (healthMetric==1){
+            System.out.println("Code: "+ shiftedLetter+lastTwoChars+"-"+(int)BMI);
+        }
+        else if (healthMetric==2) {
+            System.out.println("Code: "+ shiftedLetter+lastTwoChars+"-"+numOfTablets);
+        }
+        else {
+            System.out.println("Code: "+ shiftedLetter+lastTwoChars+"-"+(int)(sinOfAngle *100));
+        }
     }
 }
